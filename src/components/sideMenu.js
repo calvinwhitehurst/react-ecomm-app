@@ -1,9 +1,11 @@
 import 'react-bootstrap-drawer/lib/style.css'
 import React, { useState } from 'react'
-import { Collapse } from 'react-bootstrap'
+import {
+	Collapse,
+} from 'react-bootstrap';
 import { Drawer } from 'react-bootstrap-drawer'
 
-const SideMenu = props => {
+const SideMenu = ({ props, menuLinks }) => {
   const [open, setOpen] = useState(false)
 
   const handleToggle = () => setOpen(!open)
@@ -15,10 +17,11 @@ const SideMenu = props => {
       <Collapse in={open}>
         <Drawer.Overflow>
           <Drawer.ToC>
-            <Drawer.Header href='/'>Application</Drawer.Header>
-
+          <Drawer.Header href="/">Home</Drawer.Header>
             <Drawer.Nav>
-              <Drawer.Item href='/upload'>Settings</Drawer.Item>
+              {menuLinks.map(object => (
+                <Drawer.Item href={object.link}>{object.name}</Drawer.Item>
+              ))}
             </Drawer.Nav>
           </Drawer.ToC>
         </Drawer.Overflow>
