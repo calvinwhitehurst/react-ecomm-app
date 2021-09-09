@@ -1,32 +1,17 @@
-import 'react-bootstrap-drawer/lib/style.css'
-import React, { useState } from 'react'
-import {
-	Collapse,
-} from 'react-bootstrap';
-import { Drawer } from 'react-bootstrap-drawer'
+import './sidemenu.css'
+import React from 'react'
+import { Nav } from 'react-bootstrap'
 
-const SideMenu = ({ props, menuLinks }) => {
-  const [open, setOpen] = useState(false)
-
-  const handleToggle = () => setOpen(!open)
-
+const SideMenu = ({ menuLinks }) => {
   return (
-    <Drawer {...props}>
-      <Drawer.Toggle onClick={handleToggle} />
-
-      <Collapse in={open}>
-        <Drawer.Overflow>
-          <Drawer.ToC>
-          <Drawer.Header href="/">Home</Drawer.Header>
-            <Drawer.Nav>
-              {menuLinks.map(object => (
-                <Drawer.Item href={object.link}>{object.name}</Drawer.Item>
-              ))}
-            </Drawer.Nav>
-          </Drawer.ToC>
-        </Drawer.Overflow>
-      </Collapse>
-    </Drawer>
+    <Nav className='col-md-1 d-none d-md-block bg-light sidebar'>
+      <div className='sidebar-sticky'></div>
+      {menuLinks.map(object => (
+        <Nav.Item>
+          <Nav.Link href={object.link}>{object.name}</Nav.Link>
+        </Nav.Item>
+      ))}
+    </Nav>
   )
 }
 
